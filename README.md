@@ -25,8 +25,8 @@ Flask 1.0.2
 
 Once you have Python and Flask installed, run the following commands to bootstrap your environment
 ```
-git clone https://github.com/naomipohl/dp_app_v2.git
-cd dp_app_v2
+git clone https://github.com/naomipohl/dinner-project-app.git
+cd dinner-project-app
 ```
 
 Create a virtual environment by installing a third-party tool called [virtualenv](https://virtualenv.pypa.io/en/latest/)
@@ -50,9 +50,9 @@ MAIL_PORT=587
 MAIL_USE_TLS=1
 MAIL_USERNAME=<your-gmail-username>
 MAIL_PASSWORD=<your-gmail-password>
-CLOUDINARY_CLOUD_NAME = <your-cloudinary-cloud-name>
-CLOUDINARY_API_KEY = <your-cloudinary-api-key>
-CLOUDINARY_API_SECRET = <your-cloudinary-api-secret>
+CLOUDINARY_CLOUD_NAME=<your-cloudinary-cloud-name>
+CLOUDINARY_API_KEY=<your-cloudinary-api-key>
+CLOUDINARY_API_SECRET=<your-cloudinary-api-secret>
 ```
 
 Run the following commands to create the app's database tables and perform the initial migration
