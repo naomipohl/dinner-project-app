@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+  <head>
+    <link href="/static/css/stylin.css" rel="stylesheet">
+
+    <!-- Fonts/Gliphys -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+    <link href="https://fonts.googleapis.com/css?family=Quattrocento|Quattrocento+Sans" rel="stylesheet">
+  </head>
+
+{% extends "nav.html" %}
+
+{% block app_content %}
+    <h3>New User? <a href="{{ url_for('register_request') }}">Click to Register!</a></h3>
+    <h3>Forgot Your Password? <a href="{{ url_for('reset_password_request') }}">Click to Reset It</a>
+    </h3>
+    <h1>Sign In</h1>
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            <h3>Username</h3>
+            <!-- {{ form.username.label }}<br> -->
+            {{ form.username(size=32) }}<br>
+            {% for error in form.username.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            <h3>Password</h3>
+            <!-- {{ form.password.label }}<br> -->
+            {{ form.password(size=32) }}<br>
+            {% for error in form.password.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <h3>{{ form.remember_me() }} {{ form.remember_me.label }}</h3>
+        <p>{{ form.submit() }}</p>
+    </form>
+{% endblock %}
+</html>

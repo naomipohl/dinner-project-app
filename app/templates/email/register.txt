@@ -1,0 +1,11 @@
+Hi!
+
+To complete registration click on the following link:
+
+{{ url_for('register', token=token, _external=True) }}
+
+If you have not requested a new member registration simply ignore this message.
+
+Sincerely,
+
+Dinner Project Team

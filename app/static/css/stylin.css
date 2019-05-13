@@ -1,0 +1,201 @@
+body{
+	background-color:#0d0d0d!important;
+}
+
+nav{
+	background-color: white!important;
+}
+
+nav a {
+  font-family: 'Quattrocento Sans', sans-serif!important;
+  color: black;
+  font-size:30px;
+  text-decoration: none;
+}
+
+nav a:hover {
+  text-decoration: none;
+  color:lightgray;
+}
+
+img {
+  border-radius:5px;
+}
+
+.container{
+	background-color:#0d0d0d;
+	margin:auto!important;
+	width:70%!important;
+}
+
+.input, select {
+  width: 50%;
+  height:60px;
+  padding: 10px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  resize:none;
+}
+
+.input-sm {
+  width: 10%;
+  height:50px;
+  padding: 10px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  resize:none;
+}
+
+.input-lg {
+  width: 50%;
+  height:200px;
+  padding: 10px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  resize:none;
+}
+
+.input-date {
+  width: 30%;
+  height:50px;
+  padding: 10px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  resize:none;
+}
+
+.input:focus, .input-sm:focus, .input-lg:focus, .input-date:focus {
+  background-color: lightgray;
+}
+
+
+.header {
+  font-family: 'Quattrocento Sans', sans-serif;
+  color: white;
+  font-size:25px;
+}
+
+.inline {
+  display:inline;
+}
+
+.text {
+  font-family: 'Quattrocento', serif;
+  font-size:20px;
+  color: white;
+}
+
+nav a {
+  font-family: 'Quattrocento', serif;
+}
+
+td span a:hover, td a:hover {
+  text-decoration: none;
+  color:lightgray!important;
+}
+
+td span a, td a, h1, h2, h3, td {
+  font-family: 'Quattrocento Sans', sans-serif;
+  color: white!important;
+}
+
+span a {
+  color: white!important;
+}
+
+span a:hover {
+  text-decoration:none;
+  color:lightgray!important;
+}
+
+.button {
+  border: none;
+  border-radius:5px;
+  padding: 15px 32px;
+  text-align: center;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.edit_button {
+  background-color:lightgray;
+  color:black!important;
+  text-decoration:none;
+  font-size:20px;
+  font-family: 'Quattrocento Sans', sans-serif;
+}
+
+.edit_button a, .edit_button a:hover {
+  color:black!important;
+  text-decoration:none;
+  font-size:20px;
+  font-family: 'Quattrocento Sans', sans-serif;
+}
+
+.delete_button {
+  background-color: #f44336; /* Red */
+}
+
+.upload_button {
+  background-color: #4CAF50; /* Green */
+}
+
+.delete_button a, .upload_button a {
+  color: white;
+  text-decoration: none;
+  font-family: 'Quattrocento Sans', sans-serif;
+}
+
+.delete_button a:hover, .upload_button a:hover {
+  color: white;
+  text-decoration: none;
+  font-family: 'Quattrocento Sans', sans-serif;
+}
+
+.dinner-img {
+  margin-left:20%;
+}
+
+.pager {
+  background-color:#0d0d0d!important;
+}
+
+.learn_more:hover {
+  color: lightgray!important;
+}
+
+.dietary_restrictions ul li {
+  list-style: none;
+}
+
+/*
+SCHEME 1:
+#121619 - dark brown
+#2D4739 - forest green
+#FFEE88 - mustard
+#BAAB68 - pea
+#F24236 - orange-red
+
+SCHEME 2:
+#121619 - dark brown
+#113153 - navy blue
+#3D5A80 - blue
+#EDD4B2 - tan
+#F24236 - orange-red
+
+
+*/

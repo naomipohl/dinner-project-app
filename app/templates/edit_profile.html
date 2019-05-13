@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+  <head>
+    <link href="/static/css/stylin.css" rel="stylesheet">
+
+    <!-- Fonts/Gliphys -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+    <link href="https://fonts.googleapis.com/css?family=Quattrocento|Quattrocento+Sans" rel="stylesheet">
+  </head>
+
+{% extends "nav.html" %}
+
+{% block app_content %}
+    <h1>Edit Profile</h1>
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            <h2>Username</h2>
+            <!-- {{ form.username.label }}<br> -->
+            {{ form.username(size=32) }}<br>
+            {% for error in form.username.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            <h2>About Me</h2>
+            <!-- {{ form.about_me.label }}<br> -->
+            {{ form.about_me(cols=50, rows=4) }}<br>
+            {% for error in form.about_me.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            <h2>Dietary Restrictions</h2>
+            <!-- {{ form.dietary_restrictions.label }}<br> -->
+            <h3 class="dietary_restrictions">{{ form.dietary_restrictions }}</h3><br>
+            {% for error in form.dietary_restrictions.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+
+    <a href="/upload"><button class="button edit_button">Upload a profile picture!</button></a>
+
+{% endblock %}
+
+</html>

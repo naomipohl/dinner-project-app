@@ -1,0 +1,135 @@
+<!doctype html>
+<html>
+  <head>
+    <link href="/static/css/stylin.css" rel="stylesheet">
+
+    <!-- Fonts/Gliphys -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+    <link href="https://fonts.googleapis.com/css?family=Quattrocento|Quattrocento+Sans" rel="stylesheet">
+  </head>
+
+{% extends "nav.html" %}
+
+{% block app_content %}
+
+<table class="table">
+    <tr>
+        <td width="1">
+            <a href="{{ url_for('user', username=dinner.author.username) }}">
+                {% if dinner.author.picture_url == None %}
+                    <td width="91px"><img src="{{ dinner.author.avatar(128) }}"></td>
+                {% else %}
+                    <td width="91px"><img src="{{ dinner.author.picture_url }}"></td>
+                {% endif %}
+            </a>
+        </td>
+        <td>
+            <span class="header">
+                <a href="{{ url_for('user', username=dinner.author.username) }}">
+                {{ dinner.author.username }}</a> is hosting this dinner.
+            </span>
+                <br>
+                <div class="header">About this dinner: <h4 class="text inline">{{ dinner.body }}</h4></div>
+
+                <div class="header">Hosted at: <h4 class="text inline">{{ dinner.address }}</h4></div>
+
+                <div class="header">Date: <h4 class="text inline">{{ moment(dinner.date).format('LL') }}</h4></div> 
+
+                <div class="header">Max. # of Attendees: <h4 class="text inline">{{ dinner.max_attendees }}</h4></div>
+
+                <div class="header">Current # of Attendees: <h4 class="text inline">{{ dinner.get_num_of_attendees() }}</h4></div>
+
+            {% if dinner.is_full() %}
+                <span style="color: red;"><p>This dinner is full!</p></span>
+            {% endif %}
+
+            {% if not current_user.is_attending(dinner) and not dinner.is_full() and not
+            current_user == dinner.author %}
+                <p><a href="{{ url_for('attend', dinner_id=dinner.id) }}">Attend</a></p>
+            {% elif current_user.is_attending(dinner) and not current_user == dinner.author %}
+                <p><a href="{{ url_for('unattend', dinner_id=dinner.id) }}">Unattend</a>
+            </p>
+            {% endif %}
+        </td>
+    </tr>
+</table>
+
+{% if dinner.picture_url != None %}
+    <td><img src="{{ dinner.picture_url }}" class="dinner-img"></td>
+{% endif %}
+
+<h2>Attendees:</h2>
+    <span class="header">
+        {% if dinner.num_restrictions() == 0 %}
+                <h4 class="text">None</h4>
+        {% else %}
+            {% for attendee in dinner.attendees %}
+                <td width="70px">
+                    <a href="{{ url_for('user', username = attendee.username) }}">
+                        {% if attendee.picture_url == None %}
+                            <td><img src="{{ attendee.avatar(128) }}"></td>
+                        {% else %}
+                            <td><img src="{{ attendee.picture_url }}"></td>
+                        {% endif %}
+                        {{ attendee.username }}
+                    </a>
+                </td>
+            {% endfor %}
+        {% endif %}
+     </span>
+
+<h2>Dietary Restrictions of Attendees:</h2>
+
+    <span class="header">
+        {% if dinner.num_restrictions() == 0 %}
+            <h4 class="text">None</h4>
+        {% else %}
+            {% for restriction in dinner.count_restrictions().keys() %}
+                <td width="70px">
+                    <h4 class="text">{{ restriction }} ( {{ dinner.count_restrictions()[restriction] }} )</h4>
+                     <br>
+                </td>
+            {% endfor %}
+        {% endif %}
+    </span>
+
+{% if current_user.is_attending(dinner) or current_user == dinner.author %}
+    <h2>What Are You Bringing?</h2>
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            
+            {{ form.bringing(cols=50, rows=4, class="input") }}<br>
+            {% for error in form.bringing.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+{% endif %}
+
+<h2>What Others Are Bringing:</h2>
+    <span class="text">
+        {% for x in foods %}
+        <a href="{{ url_for('user', username = x.user.username) }}">
+                {{ x.user.username }}</a> is bringing {{ x.item }} <br>
+        {% endfor %}
+    </span>
+
+<br>
+
+{% if dinner.author == current_user %}
+    <button class="button upload_button"><a href="{{ url_for('upload_dinner_file', dinner_id = dinner.id) }}">Upload event photo</a></button>
+{% endif %}
+
+<br>
+{% if dinner.author == current_user %}
+    <button class="button delete_button"><a href="{{ url_for('delete', id = dinner.id) }}">Delete this dinner</a></button>
+{% endif %}
+
+<br>
+<br>
+
+{% endblock %}
+</html>

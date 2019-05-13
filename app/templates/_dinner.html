@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+  <head>
+    <link href="/static/css/stylin.css" rel="stylesheet">
+
+    <!-- Fonts/Gliphys -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+    <link href="https://fonts.googleapis.com/css?family=Quattrocento|Quattrocento+Sans" rel="stylesheet">
+  </head>
+
+<table class="table">
+    <tr>
+        <td width="70px">
+            {% if dinner.author.picture_url == None %}
+                <a href="{{ url_for('user', username=dinner.author.username) }}">
+                    <img src="{{ dinner.author.avatar(70) }}" />
+                </a>
+            {% else %}
+                <a href="{{ url_for('user', username=dinner.author.username) }}">
+                    <img src="{{ dinner.author.picture_url }}" />
+                </a>
+            {% endif %}
+
+        </td>
+        <td>
+            <a href="{{ url_for('user', username=dinner.author.username) }}">
+                {{ dinner.author.username }}
+            </a><br>
+            posted a new dinner {{ moment(dinner.timestamp).fromNow() }}. About this dinner:
+            {{ dinner.body }}
+            <br>
+            Hosted at: {{ dinner.address }}
+            <br>
+            Date: {{ moment(dinner.date).format('LL') }}
+            <br>
+            <a href="{{ url_for('dinner', id=dinner.id) }}" class="learn_more"><h3>Learn More &amp; Sign Up</h3></a>
+        </td>
+    </tr>
+</table>
+</html>

@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+  <head>
+    <link href="/static/css/stylin.css" rel="stylesheet">
+
+    <!-- Fonts/Gliphys -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+    <link href="https://fonts.googleapis.com/css?family=Quattrocento|Quattrocento+Sans" rel="stylesheet">
+  </head>
+
+{% extends "nav.html" %}
+
+{% block app_content %}
+    <h1>Hi, {{ current_user.username }}!</h1>
+    {% if form %}
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+
+            <h3>Describe the Dinner:</h3>
+            {{ form.dinner(cols=32, rows=4, class="input-lg") }}<br>
+            <h3>Address:</h3>
+            {{ form.address(cols=32, rows=2, class="input") }}<br>
+             <h3>Date:</h3>
+            {{ form.date(cols=32, rows=2, class="input-date") }}<br>
+            <h3>Max. # of Attendees:</h3>
+            {{ form.max_attendees(cols=20, rows=1, class="input-sm") }}<br>
+
+            {% for error in form.dinner.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+    <h3>Dinners You're Hosting:</h3>
+    {% endif %}
+    {% for dinner in dinners %}
+        <p>
+            {% include '_dinner.html' %}
+        </p>
+    {% endfor %}
+    {% if not current_user.hosting_dinners() and user == current_user %}
+        <p>You aren't hosting any dinners yet :/ Let's change that!</p>
+    {% endif %}
+    <nav class="pager" aria-label="...">
+        <ul class="pager">
+            <li class="previous{% if not prev_url %} disabled{% endif %}">
+                <a href="{{ next_url or '#' }}">
+                    <span aria-hidden="true">&larr;</span> Older posts
+                </a>
+            </li>
+            <li class="next{% if not next_url %} disabled{% endif %}">
+                <a href="{{ prev_url or '#' }}">
+                    Newer posts <span aria-hidden="true">&rarr;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+{% endblock %}
+</html>
